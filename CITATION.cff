@@ -8,7 +8,7 @@ authors:
     email: support@tatany.app
 version: "1.0"
 date-released: 2026-10-11
-# doi: REPLACE_AFTER_ZENODO   # e.g. 10.5281/zenodo.XXXXXXXX
+doi: "10.5281/zenodo.23292900"
 license: MIT
 repository-code: "https://github.com/Stark-Will/tattoo-probes"
 url: "https://tatany.app"
@@ -26,7 +26,7 @@ preferred-citation:
     - family-names: CONG
       given-names: YUZHU
   year: 2026
-  # doi: REPLACE_AFTER_ZENODO
-  # url: "https://zenodo.org/records/XXXXXXXX"
+  doi: "10.5281/zenodo.23292900"
+  url: "https://doi.org/10.5281/zenodo.23292900"
   publisher:
     name: Zenodo

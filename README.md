@@ -5,7 +5,7 @@
 Code, pair indexes, derived scores and figures for the paper
 
 > YUZHU CONG. *Preference ≠ Tattooability: Auditing Reward Models for AI Tattoo Generation.* 2026.
-> PDF: [`paper/main.pdf`](paper/main.pdf) (15 pages) · Zenodo: *DOI pending* · Hugging Face indexes: *pending* · arXiv: *pending* · v1.0 Release: see *Releases* after push.
+> PDF: [`paper/main.pdf`](paper/main.pdf) (15 pages) · Zenodo: [10.5281/zenodo.23292900](https://doi.org/10.5281/zenodo.23292900) · Release: [v1.0](https://github.com/Stark-Will/tattoo-probes/releases/tag/v1.0) · Hugging Face indexes: *pending* · arXiv: *pending*
 
 ## TL;DR
 
@@ -64,12 +64,13 @@ See [`data/LICENSES.md`](data/LICENSES.md). Short version:
 
 ```bibtex
 @misc{cong2026tattooability,
-  author    = {CONG, YUZHU},
-  title     = {Preference $\neq$ Tattooability: Auditing Reward Models for AI Tattoo Generation},
-  year      = {2026},
-  note      = {Code: https://github.com/Stark-Will/tattoo-probes
-               Zenodo DOI and arXiv id: fill after deposit},
-  url       = {https://tatany.app}
+  author       = {CONG, YUZHU},
+  title        = {Preference $\neq$ Tattooability: Auditing Reward Models for AI Tattoo Generation},
+  year         = {2026},
+  doi          = {10.5281/zenodo.23292900},
+  url          = {https://doi.org/10.5281/zenodo.23292900},
+  howpublished = {Zenodo},
+  note         = {Code: https://github.com/Stark-Will/tattoo-probes}
 }
 ```
 
@@ -77,14 +78,17 @@ Also see `CITATION.cff`.
 
 ## Competing interest
 
-The author operates [tatany.app](https://tatany.app), a commercial AI tattoo generator.
+The author operates [tatany.app](https://tatany.app) (product page: [AI Tattoo Generator](https://tatany.app/ai-tattoo-generator)), a commercial AI tattoo generator.
 That product was **not** evaluated or ranked; none of its outputs appear in the scored datasets.
 Contact: support@tatany.app
 
-## Resources (fill after publish)
+## Resources
 
-- GitHub: `https://github.com/Stark-Will/tattoo-probes` *(pending push)*
-- Zenodo DOI: *pending*
+- GitHub: https://github.com/Stark-Will/tattoo-probes
+- Release v1.0: https://github.com/Stark-Will/tattoo-probes/releases/tag/v1.0
+- Zenodo DOI: https://doi.org/10.5281/zenodo.23292900
+- Zenodo record: https://zenodo.org/records/23292900
+- Site: https://tatany.app
+- Product (AI tattoo generator): https://tatany.app/ai-tattoo-generator
 - Hugging Face dataset (indexes only): *pending*
 - arXiv: *pending*
-- Site: https://tatany.app
