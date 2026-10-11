@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>tattoo-probes — Preference ≠ Tattooability</title>
+<meta name="description" content="Deterministic CPU-only tattooability probes for AI tattoo generation. Companion site for Preference ≠ Tattooability: Auditing Reward Models for AI Tattoo Generation (YUZHU CONG, 2026)."/>
+<meta name="author" content="YUZHU CONG"/>
+<link rel="canonical" href="https://stark-will.github.io/tattoo-probes/"/>
+<style>
+:root{--fg:#1a1a1a;--muted:#555;--bg:#fafafa;--card:#fff;--accent:#0b5fff;--border:#e5e5e5}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--fg);background:var(--bg)}
+header{background:#111;color:#fff;padding:2.2rem 1.25rem}header .wrap{max-width:880px;margin:0 auto}
+header h1{margin:0 0 .4rem;font-size:1.65rem;font-weight:700}header p{margin:0;opacity:.85;max-width:62ch}
+.wrap{max-width:880px;margin:0 auto;padding:1.5rem 1.25rem 3rem}
+.badges a{display:inline-block;margin:.25rem .4rem .25rem 0;padding:.35rem .7rem;border-radius:999px;background:#eee;color:#111;text-decoration:none;font-size:.85rem}
+.badges a.primary{background:var(--accent);color:#fff}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem;margin:1rem 0}
+h2{font-size:1.25rem;margin:1.6rem 0 .6rem}h3{font-size:1.05rem;margin:1.1rem 0 .4rem}
+ul{padding-left:1.2rem}li{margin:.25rem 0}code{font:0.9em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;background:#f0f0f0;padding:.1em .35em;border-radius:4px}
+.fig{margin:1rem 0;text-align:center}.fig img{max-width:100%;height:auto;border:1px solid var(--border);border-radius:8px;background:#fff}
+.fig figcaption{font-size:.85rem;color:var(--muted);margin-top:.4rem}
+footer{border-top:1px solid var(--border);padding:1.5rem 1.25rem;color:var(--muted);font-size:.9rem}
+footer .wrap{padding:0}a{color:var(--accent)}
+.meta{color:var(--muted);font-size:.92rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>tattoo-probes</h1>
+    <p>Deterministic, CPU-only tattooability probes for AI tattoo generation — and an audit of whether preference reward models measure the same thing.</p>
+  </div>
+</header>
+<main class="wrap">
+  <div class="badges">
+    <a class="primary" href="https://doi.org/10.5281/zenodo.23292900">Zenodo DOI</a>
+    <a href="https://github.com/Stark-Will/tattoo-probes">GitHub</a>
+    <a href="https://github.com/Stark-Will/tattoo-probes/releases/tag/v1.0">Release v1.0</a>
+    <a href="https://github.com/Stark-Will/tattoo-probes/blob/main/paper/main.pdf">Paper PDF</a>
+    <a href="https://tatany.app/ai-tattoo-generator">AI Tattoo Generator (Tatany)</a>
+  </div>
+
+  <section class="card">
+    <h2>Paper</h2>
+    <p><strong>YUZHU CONG.</strong> <em>Preference ≠ Tattooability: Auditing Reward Models for AI Tattoo Generation.</em> 2026.</p>
+    <p class="meta">Affiliation: ZheLogic, LLC · Contact: <a href="mailto:support@tatany.app">support@tatany.app</a> · Product context: <a href="https://tatany.app">tatany.app</a></p>
+    <p>Cite: <code>doi:10.5281/zenodo.23292900</code></p>
+  </section>
+
+  <h2>TL;DR</h2>
+  <ul>
+    <li>Physically scaled CPU probes (needle 0.30&nbsp;mm, gap 0.50&nbsp;mm, 10&nbsp;px/mm) evaluated at print sizes 3 / 5 / 10 / 15&nbsp;cm.</li>
+    <li>On HPDv2 tattoo-subject pairs, a-priori probes agree with human preference <strong>below chance</strong>; the contrast survives a Holm correction across scorers.</li>
+    <li>CLIPScore, PickScore, HPSv2.1 and ImageReward track preference (and flag many injected defects), but HPSv2.1 / ImageReward are in-distribution on their training sets.</li>
+    <li>A print-scale × ink-spread stress test (isotropic Gaussian assumption, <strong>not</strong> a healed-skin model) shows skeleton retention falling as size shrinks and spread widens.</li>
+    <li><strong>Nothing here ranks a commercial AI tattoo generator.</strong></li>
+  </ul>
+
+  <h2>What this repo is for</h2>
+  <p>Researchers and engineers who need <strong>reproducible, CPU-only checks</strong> of whether an image looks like it could survive transfer to skin at a given print size — separate from “which image people prefer in a pairwise UI.”</p>
+  <p>If you are exploring an <a href="https://tatany.app/ai-tattoo-generator">AI tattoo generator</a> for design ideation, these probes are a research companion: they do not score Tatany or any other product.</p>
+
+  <h2>Figures</h2>
+  <figure class="fig">
+    <img src="assets/scale_spread.png" alt="Print-scale × ink-spread skeleton retention"/>
+    <figcaption>Print-scale × ink-spread stress test (author-generated figure from repo <code>figs/</code>).</figcaption>
+  </figure>
+  <figure class="fig">
+    <img src="assets/radar_per_dimension.png" alt="Per-dimension probe radar"/>
+    <figcaption>Per-dimension probe view.</figcaption>
+  </figure>
+  <figure class="fig">
+    <img src="assets/degr_detection.png" alt="Degradation detection"/>
+    <figcaption>Degradation / defect detection summary.</figcaption>
+  </figure>
+
+  <h2>Reproduce</h2>
+  <pre><code>python3.13 -m venv .venv
+.venv/bin/pip install -r requirements.lock.txt
+# Follow scripts/dl_public_data.md — third-party images are not redistributed
+.venv/bin/python scripts/run_probes.py
+.venv/bin/python paper/check_numbers.py</code></pre>
+  <p class="meta">Seeds: <code>0</code> everywhere. Headline numbers live in <code>results/</code> CSVs and <code>paper/numbers.tex</code>.</p>
+
+  <h2>Links</h2>
+  <ul>
+    <li>Zenodo record: <a href="https://doi.org/10.5281/zenodo.23292900">https://doi.org/10.5281/zenodo.23292900</a></li>
+    <li>Source: <a href="https://github.com/Stark-Will/tattoo-probes">https://github.com/Stark-Will/tattoo-probes</a></li>
+    <li>Product / design tool: <a href="https://tatany.app">https://tatany.app</a> · <a href="https://tatany.app/ai-tattoo-generator">AI Tattoo Generator</a></li>
+  </ul>
+
+  <h2>Licence &amp; data</h2>
+  <p>Code: MIT. No HPDv2 / ImageRewardDB / Pick-a-Pic / Drozdik images are redistributed — see <code>data/LICENSES.md</code>.</p>
+</main>
+<footer><div class="wrap">© 2026 YUZHU CONG / ZheLogic, LLC · Pages built from the public <code>docs/</code> folder of tattoo-probes.</div></footer>
+</body>
+</html>
