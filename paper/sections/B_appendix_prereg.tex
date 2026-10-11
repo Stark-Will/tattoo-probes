@@ -1,0 +1,38 @@
+\section{Pre-registration record}
+\label{app:prereg}
+
+Phase-1 probes and signs, fixed before any preference accuracy was computed, are the eight quantities in Section~\ref{sec:method}: line width $+1$; sub-needle fraction, open ends, tight gaps, mid-tone fraction, border variation, edge density and specks all $-1$.
+The primary estimand is pairwise accuracy on tattoo-subject pairs, with a 2000-resample prompt-cluster bootstrap and seed 0, at a 5\,cm print size, needle 0.30\,mm and gap 0.50\,mm.
+The unweighted signed composite was defined in advance.
+It is in Table~\ref{tab:degr} and is deprecated in favour of Table~\ref{tab:agree}.
+
+\texttt{edge\_transition\_mm} (sign $-1$) was added after the first controlled-degradation run, which showed that blur and detail loss did not reliably shrink lines below 0.30\,mm or create specks.
+Its detection rates are descriptive.
+Its preference accuracies, \HpdEdgetransitionmmfiveAcc\ on HPDv2, \IrEdgetransitionmmfiveAcc\ on ImageRewardDB and \PapEdgetransitionmmfiveAcc\ on Pick-a-Pic, were not registered tests.
+The pre-registered fusion excludes it.
+The fusion that includes it does not change the conclusion.
+Full-sample HPDv2 probe coefficients invert the registered signs for every pre-registered feature except open ends, which stay negative.
+Those inverted signs are part of the negative result, not a specification we chose in advance.
+
+Automatic labels left \NHpdClsAmbiguous\ HPDv2 images and \NIrClsAmbiguous\ ImageRewardDB images ambiguous, \nAmb\ images in total.
+A single non-blinded rater, the author's assistant, assigned design (\NambDesign), on-skin (\NambOnskin), incidental (\NambIncidental) and other (\NambOther).
+The rater saw the prompt and knew the labels would define the tattoo-subject subset.
+This was not a blinded adjudication.
+Counts after replacement are the ``after review'' rows of Table~\ref{tab:data}.
+
+Pick-a-Pic scoring was added after the HPDv2 and ImageRewardDB runs.
+Keyword selection yielded \nPAPkwPairs\ labelled pairs over \nPAPkwPrompts\ prompts; after CLIP filtering, \PapHpstwoN\ design or on-skin pairs over \NPapTsprompts\ prompts remain.
+That analysis was not in the Phase-1 registration.
+PickScore's accuracy on it is leaky because PickScore was trained on Pick-a-Pic v1.
+The Gaussian grid is a sensitivity check, not a registered test on healed skin.
+Its default has no additive pixel noise, so skeleton $F_1$ at spread 0 is \ssFoneSizeFiveSpreadZero\ at 5\,cm rather than the noise-on value \ssNoiseFoneFive.
+Reward detection of injected defects uses \nDegrRewDesigns\ designs after a probe pass on \nDegrDesigns\ designs, and is not a registered superiority test.
+Training overlap for HPSv2.1 and ImageReward was known from the dataset papers before scoring \citep{wu2023hpsv2,xu2023imagereward}.
+A title-and-abstract search did not find a prior audit of preference rewards against millimetre tattoo probes.
+Semantic Scholar and Google Scholar were not fully queried.
+
+Spearman correlations at 5\,cm and 0.30\,mm spread, each over \nDegrDesigns\ designs, are in Table~\ref{tab:rho}.
+The headline four are also stated in Section~\ref{sec:results}.
+
+\input{tables/tab_rho.tex}
+\enlargethispage{2\baselineskip}

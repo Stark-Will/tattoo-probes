@@ -1,0 +1,79 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\hypersetup{hidelinks,pdfauthor={YUZHU CONG},pdftitle={Preference is not tattooability: Auditing Reward Models for AI Tattoo Generation}}
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{4pt}
+\setlength{\belowcaptionskip}{2pt}
+\setlength{\abovedisplayskip}{6pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{6pt plus 2pt minus 2pt}
+
+\makeatletter
+\let\paper@thebibliography\thebibliography
+\renewcommand{\thebibliography}[1]{%
+  \footnotesize
+  \setlength{\bibsep}{0pt}%
+  \enlargethispage{3\baselineskip}%
+  \paper@thebibliography{#1}%
+  \raggedright
+}
+\makeatother
+
+\input{numbers}
+
+\title{Preference $\neq$ Tattooability: Auditing Reward Models for AI Tattoo Generation}
+\author{YUZHU CONG\\
+ZheLogic, LLC\\
+\texttt{support@tatany.app}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+AI tattoo generation is usually ranked with the same reward models that rank general text-to-image outputs.
+Those models predict which image a crowd annotator prefers.
+A tattoo that will be worn also has to survive a needle, a gap that heals shut, and ink that spreads.
+We audited that gap with deterministic, physically scaled probes and with CLIPScore, PickScore, HPSv2.1 and ImageReward, on tattoo-subject pairs from HPDv2 and ImageRewardDB, on controlled defects, and on a print-scale ink-spread stress test.
+On HPDv2 tattoo-subject pairs, a-priori probes agree with human preference below chance, and that contrast remains after a Holm correction across scorers.
+On ImageRewardDB (\NIrTsprompts\ prompts) and Pick-a-Pic (\NPapTsprompts\ prompts) the same probes are not significant after Holm.
+A prompt-held-out logistic fusion on HPDv2 rises above chance only by learning inverted signs.
+Reward models track preference, and they also flag many injected defects, but HPSv2.1 was trained on HPDv2 and ImageReward on ImageRewardDB, so those agreements are in-distribution.
+The probes are interpretable and tied to millimetre assumptions.
+The rewards are not.
+Nothing here ranks a commercial AI tattoo generator.
+\end{abstract}
+\noindent\textbf{Keywords:} AI tattoo generation; AI tattoo generator; human preference; reward models; tattooability.
+
+\input{sections/01_introduction}
+\input{sections/02_related}
+\input{sections/03_method}
+\input{sections/04_data}
+\input{sections/05_results}
+\input{sections/06_discussion}
+\input{sections/07_limitations}
+\input{sections/08_conclusion}
+\input{sections/09_backmatter}
+
+\appendix
+\input{sections/A_appendix_probes}
+\input{sections/B_appendix_prereg}
+
+\begingroup
+\footnotesize
+\bibliographystyle{unsrtnat}
+\emergencystretch=2em
+\bibliography{refs}
+\endgroup
+
+\end{document}

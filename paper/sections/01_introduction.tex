@@ -1,0 +1,40 @@
+\section{Introduction}
+\label{sec:intro}
+
+Text-to-image systems are aligned and ranked with human preference \citep{rombach2022ldm,wu2023hps,wu2023hpsv2,xu2023imagereward,kirstain2023pickapic,wallace2024diffusiondpo,fan2023dpok}.
+The question those benchmarks answer is perceptual: which image do people prefer for this prompt?
+AI tattoo generation asks a second question.
+If the image is printed on skin at a stated size, do the lines stay wider than a needle, do the gaps stay open after a small amount of ink spread, and does the shading stay a deliberate tone rather than a muddy mid-grey?
+Those properties are not what preference annotators were asked to judge.
+
+Public preference sets already mix flash-sheet prompts with portraits that merely wear tattoos.
+A reward can rank the portraits and still say nothing about whether a design survives a needle.
+Tattoo vision work covers recognition, retrieval and removal \citep{nist2016tattbp,gonzalezsoler2024tatttrn,genink2025,ibsen2022facebeneath}, not this mismatch.
+
+We measured the mismatch with a small set of CPU probes.
+Each probe rescales the image so that the longest side is a chosen print size, then reports a length, a fraction or a density in millimetres.
+Signs were fixed before looking at preference accuracy: thicker minimum lines are better; sub-needle lines, open stroke ends, tight gaps, mid-tones, uneven borders, edge clutter and specks are worse.
+One further probe, edge-transition width, was added after the first controlled-degradation run.
+It is reported as post hoc.
+An unweighted composite of the signed probes is reported and then set aside.
+Per-dimension numbers are the ones we interpret.
+
+\paragraph{Contributions.}
+\begin{enumerate}
+  \item A documented probe suite (Section~\ref{sec:method}) with needle width 0.30\,mm, gap width 0.50\,mm, and analysis resolution 10\,px/mm, evaluated at print sizes 3, 5, 10 and 15\,cm.
+  \item A prompt-clustered comparison of each probe, and of CLIPScore, PickScore, HPSv2.1 and ImageReward, with human winners on tattoo-subject pairs (Section~\ref{sec:results}).
+  The resampling unit is the prompt.
+  On HPDv2 the pre-registered probes sit below chance, and \NHpdSigholm\ of \NHpdTests\ scorers remain significant after Holm.
+  On ImageRewardDB none of the \NIrTests\ scorers is Holm-significant.
+  On Pick-a-Pic the only Holm-significant scorer is PickScore (\NPapSigholm\ of \NPapTests); the probes are not.
+  Those two sets have \NIrTsprompts\ and \NPapTsprompts\ prompts.
+  A prompt-held-out logistic fusion on HPDv2 reaches \FusHpdProbespreregisteredAcc\ only with inverted coefficients.
+  \item A controlled-defect check on \nDegrDesigns\ public designs: single probes detect the defects they were built for, and the reward models detect many defects as well.
+  HPSv2.1 is the strongest of the four rewards on that check.
+  \item A scale-by-spread stress test under an isotropic Gaussian blur, with no additive pixel noise in the default grid.
+  It is not a model of healed skin.
+  With that default, skeleton $F_1$ at zero spread is exact, and it falls as the spread is widened.
+\end{enumerate}
+
+The author operates a commercial AI tattoo generator.
+That product was not scored, and none of its outputs are in the datasets (Section~\ref{sec:coi}).

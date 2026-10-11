@@ -1,0 +1,34 @@
+\section{Related work}
+\label{sec:related}
+
+\paragraph{Preference models for text-to-image systems.}
+Human Preference Score and HPSv2 fit a scorer on crowd choices over generated images, and HPDv2 is the dataset released with that line of work \citep{wu2023hps,wu2023hpsv2}.
+ImageReward learns a scalar from rated text--image pairs in ImageRewardDB \citep{xu2023imagereward}.
+Pick-a-Pic collects web user choices and trains PickScore \citep{kirstain2023pickapic}.
+CLIPScore uses CLIP cosine similarity as a reference-free match between a caption and an image \citep{hessel2021clipscore,radford2021clip}.
+Direct preference optimisation and policy gradients have been used to fine-tune diffusion models against such rewards \citep{wallace2024diffusiondpo,fan2023dpok}.
+Latent diffusion is the generator family that produced much of this training imagery \citep{rombach2022ldm}, and LAION-scale data sit underneath the CLIP encoders \citep{schuhmann2022laion}.
+Compositional benchmarks, holistic grids and localised human marks still score a picture, not a mark at a print size \citep{huang2023t2icompbench,ghosh2023geneval,lee2023heim,liang2024richhf}.
+
+\paragraph{Line drawings.}
+Suggestive contours and the ``where do people draw lines'' studies treat line selection as a perceptual decision: which luminance ridges a viewer would mark, not which strokes a needle can hold \citep{decarlo2003suggestive,cole2008where}.
+Simplification then asks which of those strokes can be dropped while the depiction remains recognisable \citep{simoserra2016simplify}.
+Vectorisation fidelity asks whether the recovered curves still lie on the drawing \citep{favreau2016fidelity}.
+Cleanup and virtual-sketching benchmarks score how close a rough stroke becomes to a clean vector, usually in pixels on a screen \citep{yan2020sketchcleanup,mo2021virtualsketching}.
+Those notions are the right family for tattooability, and they stop at the picture.
+A tattoo line is selected under a millimetre budget: width against needle width $w_n$, separation against gap $g$, and a blur $\sigma$ that models ink spread after the mark is printed at size $s$.
+Our probes are that budget, measured on a physically rescaled raster.
+They are not a line-selection model, a simplification objective, or a vectorisation $F_1$ against an artist stroke.
+
+\paragraph{Tattoo images.}
+NIST's Tatt-BP note is a collection protocol for tattoo photographs used in recognition \citep{nist2016tattbp}.
+TattTRN reconstructs templates for retrieval \citep{gonzalezsoler2024tatttrn}.
+GenInk synthesises tattoo images for biometric experiments \citep{genink2025}.
+Synthetic facial tattoos have been used to test recognition under ink \citep{ibsen2022facebeneath}.
+We did not find a published audit of whether preference rewards agree with physical tattooability probes.
+That absence is a search result, not a proof (Appendix~\ref{app:prereg}).
+
+\paragraph{Classical image operators.}
+The probes call Otsu's threshold, Canny edges and Zhang--Suen thinning \citep{otsu1979,canny1986,zhang1984thinning}.
+Structural similarity is the usual reference image-quality score \citep{wang2004ssim}.
+We do not use it: preference pairs are different images, not a distorted copy of one reference.

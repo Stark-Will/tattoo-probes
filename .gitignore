@@ -1,0 +1,30 @@
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.DS_Store
+# Third-party images are downloaded by scripts and are NOT redistributed
+data/raw/
+data/degr/
+# Hugging Face / torch caches
+.cache/
+**/huggingface/
+**/.huggingface/
+# Local logs and scratch
+logs/
+*.log
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.blg
+paper/*.toc
+paper/figs/
+# packaging
+build/
+dist/
+*.egg-info/
+site/
+
+# release artifacts built outside this tree
+*.zip

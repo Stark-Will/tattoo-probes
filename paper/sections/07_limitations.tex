@@ -1,0 +1,41 @@
+\section{Limitations}
+\label{sec:limitations}
+
+Tattoo-subject prompt counts are small outside HPDv2.
+ImageRewardDB contributes \NIrTsprompts\ prompts and Pick-a-Pic \NPapTsprompts.
+Cluster-bootstrap intervals on those sets are wide, and after Holm no probe is significant (\NIrSigholm\ of \NIrTests\ scorers on ImageRewardDB; the single Pick-a-Pic rejection is PickScore, \NPapSigholm\ of \NPapTests).
+Those rows do not support a model ranking.
+
+The class filter mixes keywords, CLIP zero-shot, and a single non-blinded annotator on \nAmb\ ambiguous images.
+A design-versus-portrait error changes which pairs enter Table~\ref{tab:agree}.
+
+Needle width $w_n$ and gap width $g$ are practitioner-scale assumptions, not measurements from this study.
+Other machines, other skin, and colour packing change both numbers.
+The ink-spread simulator is an isotropic Gaussian at a stated $\sigma$.
+It is unvalidated on healed skin.
+Real ink does not spread as a circular blur, and we have no paired photograph of a design before and after healing.
+With noise off, skeleton $F_1$ at $\sigma{=}0$ is \ssFoneSizeThreeSpreadZero\ at every tested size $s$, including 15\,cm (\ssFoneSizeFifteenSpreadZero).
+The earlier decline with size was grey-level noise of pixel standard deviation 4, which leaves \ssNoiseFoneThree\ at $s{=}3$\,cm and \ssNoiseFoneFifteen\ at $s{=}15$\,cm.
+Removing that artifact does not make the Gaussian a model of healed skin.
+At 0.60\,mm spread, no tested size reaches mean $F_1$ of seven tenths (\minSizeSeventySpreadSixty).
+
+Reward-model scores leak their training sets.
+HPSv2.1 was trained on HPDv2, ImageReward on ImageRewardDB, and PickScore on Pick-a-Pic.
+We cannot remove the tattoo-subject pairs from those training sets retroactively.
+CLIPScore was not trained as a preference model.
+The Pick-a-Pic licence is uncertain: the original dataset card has been removed, and mirrors say MIT.
+We did not verify that statement.
+
+Otsu thresholding and the greyscale conversion assume a dark-ink-on-light-paper drawing.
+Colour work, skin photographs and mid-grey packing violate that assumption, and the probes still emit a number.
+Edge-transition width is a post-hoc probe, chosen after the first controlled-degradation run.
+Its preference accuracy is exploratory.
+Defects are synthetic and one at a time, and reward detection uses \nDegrRewDesigns\ designs.
+The composite mixes probes whose signs fight each other under thickening.
+It is deprecated and is not a column of Table~\ref{tab:degr}.
+
+Figure~\ref{fig:tatany} is a marketing mock-up.
+The panels are tatany.app product case images, cropped to one panel, not logged generations.
+Background paper and skin texture change what a probe would read, which is why the figure is illustration only and why per-image probe values are not quoted.
+No commercial AI tattoo generator was ranked.
+Generalising from HPDv2 to images produced by a product model would be a new study.

@@ -1,0 +1,40 @@
+\section{Data}
+\label{sec:data}
+
+\subsection{Preference pairs}
+HPDv2 training pairs whose prompt text matches ``tattoo'' contribute \nHPDpairsAll\ pairs, \nHPDpromptsAll\ prompts and \nHPDimgs\ images.
+ImageRewardDB training and validation rows with a tattoo prompt contribute \nIRrows\ rows.
+\nIRempty\ of those image files are empty in the upstream archive, leaving \nIRimgs\ usable images.
+Pick-a-Pic v2 rows from a public parquet mirror contribute \nPAProws\ tattoo rows, of which \nPAPpairs\ are labelled and show two different images, across \nPAPprompts\ prompts.
+The original Hugging Face dataset card has been removed.
+Mirrors state an MIT licence.
+We could not verify that statement, so the mirror is used only as local metadata and local images, and we do not redistribute either.
+Keyword selection keeps \nPAPkwPairs\ labelled pairs over \nPAPkwPrompts\ prompts.
+Images for those rows, \nPAPimgs\ files, were read by row-group ranges from the mirror.
+CLIP then keeps only design and on-skin pairs.
+
+\subsection{Tattoo-subject filter}
+Keyword rules mark an explicit design request or an incidental ``person with tattoos'' prompt.
+Otherwise, and when the keyword and the image disagree, we use CLIP ViT-B/32 zero-shot among four captions: a design on paper, a close-up of a tattoo on skin, a picture of a person who has tattoos, and something else \citep{radford2021clip}.
+The automatic labels are design, on-skin, incidental, other, or ambiguous.
+Counts before review are in Table~\ref{tab:data}.
+
+Ambiguous files, \nAmb\ images in total, were then labelled by a single non-blinded rater, the author's assistant, who saw the prompt and the image.
+The assistant's labels were design \NambDesign, on-skin \NambOnskin, incidental \NambIncidental\ and other \NambOther.
+They are not a second independent annotation, and they were not blinded to the study aim.
+After that replacement, tattoo-subject images are those labelled design or on-skin.
+Preference probes and all four reward models on the reviewed HPDv2 tattoo-subject subset use the same \HpdHpstwoN\ pairs over \NHpdTsprompts\ prompts.
+ImageRewardDB uses \IrFractightgapfiveN\ pairs over \NIrTsprompts\ prompts.
+The Pick-a-Pic tattoo-subject slice that remains after the CLIP filter is \PapHpstwoN\ pairs over \NPapTsprompts\ prompts.
+That slice is very small.
+ImageRewardDB tattoo-subject has only \NIrTsprompts\ prompts.
+Its intervals are wide because the bootstrap resamples prompts, not pairs.
+
+\subsection{Defect corpus}
+Controlled defects and the spread test use \nDegrDesigns\ designs drawn with seed 0 from Drozdik/tattoo\_v0.
+That set is released for research under CC BY-NC-SA.
+We do not redistribute those images.
+Six operators at two levels produce \nDegrImgs\ images including the clean copies.
+Reward scoring of defects uses \nDegrRewDesigns\ of the designs.
+
+\input{tables/tab_data.tex}

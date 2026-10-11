@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this code or the derived pair/score tables, please cite the paper."
+title: "Preference ≠ Tattooability: Auditing Reward Models for AI Tattoo Generation"
+authors:
+  - family-names: CONG
+    given-names: YUZHU
+    affiliation: "ZheLogic, LLC"
+    email: support@tatany.app
+version: "1.0"
+date-released: 2026-10-11
+# doi: REPLACE_AFTER_ZENODO   # e.g. 10.5281/zenodo.XXXXXXXX
+license: MIT
+repository-code: "https://github.com/Stark-Will/tattoo-probes"
+url: "https://tatany.app"
+keywords:
+  - AI tattoo generation
+  - AI tattoo generator
+  - human preference
+  - reward models
+  - tattooability
+  - text-to-image evaluation
+preferred-citation:
+  type: generic
+  title: "Preference ≠ Tattooability: Auditing Reward Models for AI Tattoo Generation"
+  authors:
+    - family-names: CONG
+      given-names: YUZHU
+  year: 2026
+  # doi: REPLACE_AFTER_ZENODO
+  # url: "https://zenodo.org/records/XXXXXXXX"
+  publisher:
+    name: Zenodo

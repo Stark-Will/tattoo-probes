@@ -1,0 +1,124 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Preference agreement}
+Table~\ref{tab:agree} is the primary result.
+Each cell is pairwise accuracy $A$, the effect $A-0.5$, Cohen's $h$, and a Holm-adjusted prompt-cluster $p$.
+The bootstrap resamples prompts, not pairs.
+Figure~\ref{fig:radar} plots the same point estimates of $A$.
+The naive composite is not in this table.
+On HPDv2 tattoo-subject pairs, seven pre-registered probes have bootstrap intervals entirely below one half, and those seven remain significant after Holm ($p_{\mathrm{Holm}}\le\HpdFractightgapfivePholm$).
+The tight-gap fraction agrees on \HpdFractightgapfiveAcc\ of pairs (effect \HpdFractightgapfiveEffect, $h{=}\HpdFractightgapfiveH$, \HpdFractightgapfiveLo\ to \HpdFractightgapfiveHi, $n{=}\HpdFractightgapfiveN$).
+Edge density is \HpdEdgedensitypermmfiveAcc, specks \HpdSpeckspercmfiveAcc, mid-tone fraction \HpdMidtonefracfiveAcc, border variation \HpdBorderstdfiveAcc, sub-needle fraction \HpdFracsubneedlefiveAcc, and minimum line width \HpdLinewpmmfiveAcc.
+Open ends are near chance at \HpdOpenendspercmfiveAcc\ (\HpdOpenendspercmfiveLo\ to \HpdOpenendspercmfiveHi).
+Post-hoc edge transition is \HpdEdgetransitionmmfiveAcc\ and was not a registered test.
+Annotators preferred the image the probes call harder to tattoo.
+
+HPSv2.1 matches the human winner on \HpdHpstwoAcc\ (effect \HpdHpstwoEffect, $h{=}\HpdHpstwoH$, $p_{\mathrm{Holm}}\le\HpdHpstwoPholm$, \HpdHpstwoLo\ to \HpdHpstwoHi, $n{=}\HpdHpstwoN$).
+PickScore matches on \HpdPickscoreAcc, CLIPScore on \HpdClipscoreAcc, and ImageReward on \HpdImagerewardAcc.
+HPSv2.1 was trained on HPDv2, so that row is in-distribution.
+It shows the scorer still ranks these pairs as the annotators did.
+It does not show a needle model.
+
+On ImageRewardDB the probes sit near one half, on \NIrTsprompts\ prompts, and none of the \NIrTests\ scorers is significant after Holm (\NIrSigholm).
+Tight-gap accuracy is \IrFractightgapfiveAcc\ (effect \IrFractightgapfiveEffect, $h{=}\IrFractightgapfiveH$, \IrFractightgapfiveLo\ to \IrFractightgapfiveHi, $n{=}\IrFractightgapfiveN$, $p_{\mathrm{Holm}}{=}\IrFractightgapfivePholm$).
+Mid-tone fraction is the highest probe at \IrMidtonefracfiveAcc.
+Edge density is the lowest at \IrEdgedensitypermmfiveAcc.
+ImageReward scores \IrImagerewardAcc\ (\IrImagerewardLo\ to \IrImagerewardHi) and was trained on this dataset.
+HPSv2.1 is \IrHpstwoAcc\ (\IrHpstwoLo\ to \IrHpstwoHi), PickScore \IrPickscoreAcc, CLIPScore \IrClipscoreAcc.
+These intervals are too wide to rank models.
+
+On the Pick-a-Pic tattoo-subject slice the pre-registered probes do not repeat the HPDv2 pattern as a stable ranking.
+Tight-gap accuracy is \PapFractightgapfiveAcc\ (\PapFractightgapfiveLo\ to \PapFractightgapfiveHi, $n{=}\PapFractightgapfiveN$), edge density \PapEdgedensitypermmfiveAcc, specks \PapSpeckspercmfiveAcc, mid-tone fraction \PapMidtonefracfiveAcc, and minimum line width \PapLinewpmmfiveAcc.
+The intervals cover both sides of one half because there are only \NPapTsprompts\ prompts, and no probe is Holm-significant.
+The one Holm-significant scorer on this slice is PickScore (\NPapSigholm\ of \NPapTests, $p_{\mathrm{Holm}}\le\PapPickscorePholm$).
+HPSv2.1 matches on \PapHpstwoAcc\ (\PapHpstwoLo\ to \PapHpstwoHi) and ImageReward on \PapImagerewardAcc\ (\PapImagerewardLo\ to \PapImagerewardHi).
+Neither model was trained on Pick-a-Pic.
+PickScore matches on \PapPickscoreAcc\ and was trained on Pick-a-Pic v1, so that cell is leaky.
+CLIPScore is \PapClipscoreAcc.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.48\linewidth]{figures/radar_per_dimension.png}
+  \caption{Per-dimension agreement with human preference on the three tattoo-subject slices. Each spoke is one scorer. This is the same comparison as Table~\ref{tab:agree}, without the deprecated composite.}
+  \label{fig:radar}
+\end{figure}
+
+\input{tables/tab_agreement.tex}
+
+\subsection{Fusion learns the opposite signs}
+A prompt-held-out logistic fusion of the eight pre-registered probes reaches \FusHpdProbespreregisteredAcc\ on HPDv2 (\FusHpdProbespreregisteredLo\ to \FusHpdProbespreregisteredHi, $n{=}\FusHpdProbespreregisteredN$).
+Adding edge transition leaves \FusHpdProbesallAcc.
+The full-sample coefficients invert the a-priori signs for line width, sub-needle fraction, tight gaps, mid-tones, border variation, edge density and specks.
+Only open ends stay negative.
+The fusion predicts annotator taste by rewarding features the probes call worse to tattoo.
+Reward fusion reaches \FusHpdRewardsAcc\ ($n{=}\FusHpdRewardsN$) and is not improved by adding probes (\FusHpdRewardsprobesAcc).
+In the reward-only fit the HPSv2.1 coefficient is positive and dominates; PickScore's coefficient is negative.
+
+On ImageRewardDB the pre-registered probe fusion is \FusIrProbespreregisteredAcc\ (\FusIrProbespreregisteredLo\ to \FusIrProbespreregisteredHi).
+Reward fusion is \FusIrRewardsAcc; adding probes lowers it to \FusIrRewardsprobesAcc.
+The reward-only fit puts a positive sign on ImageReward and a negative sign on HPSv2.1.
+We do not treat the probe signs on \NIrTsprompts\ prompts as stable.
+
+On Pick-a-Pic the pre-registered probe fusion is \FusPapProbespreregisteredAcc\ (\FusPapProbespreregisteredLo\ to \FusPapProbespreregisteredHi, $n{=}\FusPapProbespreregisteredN$), below one half, and the all-probe fusion is \FusPapProbesallAcc.
+The full-sample signs are not the HPDv2 inversion.
+Line width is negative, and edge density and specks are positive, so those three disagree with the a-priori tattooability signs.
+Sub-needle fraction, open ends, tight gaps, mid-tones and border variation keep the a-priori sign.
+Reward fusion reaches \FusPapRewardsAcc\ (\FusPapRewardsLo\ to \FusPapRewardsHi); adding probes lowers it to \FusPapRewardsprobesAcc.
+In the reward-only fit PickScore and ImageReward are positive and HPSv2.1 is negative.
+The PickScore term is the leaky one.
+
+\input{tables/tab_fusion.tex}
+
+\subsection{Injected defects}
+Table~\ref{tab:degr} asks whether a known damage lowers the score.
+At 5\,cm, edge transition rates blur at \DgEdgetransitionmmfiveBlurOne\ and \DgEdgetransitionmmfiveBlurTwo, detail loss at \DgEdgetransitionmmfiveDetaillossOne\ and \DgEdgetransitionmmfiveDetaillossTwo, and thickening at \DgEdgetransitionmmfiveThickenOne\ and \DgEdgetransitionmmfiveThickenTwo.
+Mid-tone fraction rates haze at \DgMidtonefracfiveHazeOne\ and speckle at \DgMidtonefracfiveSpeckleOne.
+Sub-needle fraction rates thinning at \DgFracsubneedlefiveThinOne\ and \DgFracsubneedlefiveThinTwo.
+The deprecated composite is omitted here and stated once in Appendix~\ref{app:probes}.
+
+HPSv2.1's lowest cell in the table is light blur at \DgHpstwoBlurOne.
+PickScore on that cell is \DgPickscoreBlurOne.
+CLIPScore on speckle is \DgClipscoreSpeckleOne\ and \DgClipscoreSpeckleTwo.
+ImageReward on heavy speckle is \DgImagerewardSpeckleTwo.
+Rewards detect many defects and do not name the millimetre quantity that moved.
+Figure~\ref{fig:degr} shows the grid.
+
+\input{tables/tab_degr.tex}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.55\linewidth]{figures/degr_detection.png}
+  \caption{Detection rates on six injected defects at two strengths. The 5\,cm numbers for the probes we interpret, and for the four rewards, are in Table~\ref{tab:degr}.}
+  \label{fig:degr}
+\end{figure}
+
+\subsection{Scale and spread}
+With no additive pixel noise, skeleton $F_1$ at spread $\sigma{=}0$ is \ssFoneSizeThreeSpreadZero\ at $s{=}3$\,cm, \ssFoneSizeFiveSpreadZero\ at $s{=}5$\,cm, \ssFoneSizeTenSpreadZero\ at $s{=}10$\,cm and \ssFoneSizeFifteenSpreadZero\ at $s{=}15$\,cm (Table~\ref{tab:scale}, Figure~\ref{fig:scale}).
+The same four sizes under the old $\sigma{=}4$ grey-level noise are \ssNoiseFoneThree, \ssNoiseFoneFive, \ssNoiseFoneTen\ and \ssNoiseFoneFifteen, which fall as the print grows.
+That fall is not in the default grid.
+At 0.30\,mm spread, default $F_1$ is \ssFoneSizeThreeSpreadThirty, \ssFoneSizeFiveSpreadThirty, \ssFoneSizeTenSpreadThirty\ and \ssFoneSizeFifteenSpreadThirty.
+At 0.60\,mm it is \ssFoneSizeThreeSpreadSixty, \ssFoneSizeFiveSpreadSixty, \ssFoneSizeTenSpreadSixty\ and \ssFoneSizeFifteenSpreadSixty.
+Gap survival at 0.30\,mm is \ssGapSizeThreeSpreadThirty, \ssGapSizeFiveSpreadThirty, \ssGapSizeTenSpreadThirty\ and \ssGapSizeFifteenSpreadThirty.
+Table~\ref{tab:scale} reports a subset of that 0.05\,mm grid.
+
+Table~\ref{tab:minsize} is the size at which mean skeleton $F_1$ first reaches seven tenths, and eight tenths.
+At zero spread both levels are met at \minSizeSeventySpreadZero\,cm.
+At 0.20\,mm the seven-tenths size is \minSizeSeventySpreadTwenty\,cm and the eight-tenths size is \minSizeEightySpreadTwenty\,cm.
+At 0.30\,mm the seven-tenths size is \minSizeSeventySpreadThirty\,cm and eight tenths is \minSizeEightySpreadThirty.
+At 0.60\,mm neither level is reached (\minSizeSeventySpreadSixty, \minSizeEightySpreadSixty).
+
+At 5\,cm and 0.30\,mm, tight-gap fraction correlates with gap survival at \RhoFractightgapGapsurvival\ (partly circular), edge density with gap survival at \RhoEdgedensitypermmGapsurvival, edge transition with skeleton $F_1$ at \RhoEdgetransitionmmSkelf, and minimum line width with skeleton $F_1$ at \RhoLinewpmmSkelf.
+These associations live inside the simulator.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.72\linewidth]{figures/scale_spread.png}
+  \caption{Mean skeleton $F_1$ against ink spread $\sigma$ at each print size $s$. The grid is the default simulator: no additive pixel noise. Table~\ref{tab:scale} lists a subset of the same cells.}
+  \label{fig:scale}
+\end{figure}
+
+\input{tables/tab_scale.tex}
+\input{tables/tab_minsize.tex}
+
+

@@ -1,0 +1,221 @@
+\begin{thebibliography}{28}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Rombach et~al.(2022)Rombach, Blattmann, Lorenz, Esser, and
+  Ommer]{rombach2022ldm}
+Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and Bj{\"o}rn
+  Ommer.
+\newblock High-resolution image synthesis with latent diffusion models.
+\newblock In \emph{Proc. IEEE/CVF CVPR}, 2022.
+\newblock \doi{10.1109/CVPR52688.2022.01042}.
+
+\bibitem[Wu et~al.(2023{\natexlab{a}})Wu, Sun, Zhu, Zhao, and Li]{wu2023hps}
+Xiaoshi Wu, Keqiang Sun, Feng Zhu, Rui Zhao, and Hongsheng Li.
+\newblock Human preference score: Better aligning text-to-image models with
+  human preference.
+\newblock In \emph{Proc. IEEE/CVF International Conference on Computer Vision
+  (ICCV)}, 2023{\natexlab{a}}.
+\newblock \doi{10.1109/ICCV51070.2023.00200}.
+
+\bibitem[Wu et~al.(2023{\natexlab{b}})Wu, Hao, Sun, Chen, Zhu, Zhao, and
+  Li]{wu2023hpsv2}
+Xiaoshi Wu, Yiming Hao, Keqiang Sun, Yixiong Chen, Feng Zhu, Rui Zhao, and
+  Hongsheng Li.
+\newblock Human preference score v2: A solid benchmark for evaluating human
+  preferences of text-to-image synthesis.
+\newblock arXiv:2306.09341, 2023{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2306.09341}.
+
+\bibitem[Xu et~al.(2023)Xu, Liu, Wu, Tong, Li, Ding, Tang, and
+  Dong]{xu2023imagereward}
+Jiazheng Xu, Xiao Liu, Yuchen Wu, Yuxuan Tong, Qinkai Li, Ming Ding, Jie Tang,
+  and Yuxiao Dong.
+\newblock Imagereward: Learning and evaluating human preferences for
+  text-to-image generation.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2023.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper_files/paper/2023/hash/33646ef0ed554145eab65f6250fab0c9-Abstract-Conference.html}.
+
+\bibitem[Kirstain et~al.(2023)Kirstain, Polyak, Singer, Matiana, Penna, and
+  Levy]{kirstain2023pickapic}
+Yuval Kirstain, Adam Polyak, Uriel Singer, Shahbuland Matiana, Joe Penna, and
+  Omer Levy.
+\newblock Pick-a-pic: An open dataset of user preferences for text-to-image
+  generation.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2023.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper_files/paper/2023/hash/73aacd8b3b05b4b503d58310b523553c-Abstract-Conference.html}.
+
+\bibitem[Wallace et~al.(2024)Wallace, Dang, Rafailov,
+  et~al.]{wallace2024diffusiondpo}
+Bram Wallace, Meihua Dang, Rafael Rafailov, et~al.
+\newblock Diffusion model alignment using direct preference optimization.
+\newblock In \emph{Proc. IEEE/CVF CVPR}, 2024.
+\newblock \doi{10.1109/CVPR52733.2024.00786}.
+
+\bibitem[Fan et~al.(2023)Fan, Watkins, Du, et~al.]{fan2023dpok}
+Ying Fan, Olivia Watkins, Yuqing Du, et~al.
+\newblock Dpok: Reinforcement learning for fine-tuning text-to-image diffusion
+  models.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2023.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper_files/paper/2023/hash/fc65fab891d83433bd3c8d966edde311-Abstract-Conference.html}.
+
+\bibitem[Ngan et~al.(2016)Ngan, Quinn, and Grother]{nist2016tattbp}
+Mei Ngan, George~W. Quinn, and Patrick Grother.
+\newblock Tattoo recognition technology -- best practices (tatt-bp) guidelines
+  for tattoo image collection.
+\newblock Technical Report NISTIR 8109, NIST, 2016.
+
+\bibitem[Gonzalez-Soler et~al.(2024)]{gonzalezsoler2024tatttrn}
+Lazaro~Janier Gonzalez-Soler et~al.
+\newblock Tatttrn: Template reconstruction network for tattoo retrieval.
+\newblock In \emph{Proc. IEEE/CVF CVPR Workshops}, 2024.
+\newblock \doi{10.1109/CVPRW63382.2024.00160}.
+
+\bibitem[Gonzalez-Soler et~al.(2025)Gonzalez-Soler, Pandey, and
+  Rathgeb]{genink2025}
+Lazaro~J. Gonzalez-Soler, Susan~B. Pandey, and Christian Rathgeb.
+\newblock Genink: A framework for tattoo image synthesis.
+\newblock In \emph{Proc. 13th International Workshop on Biometrics and
+  Forensics (IWBF)}, 2025.
+\newblock \doi{10.1109/IWBF63717.2025.11113431}.
+
+\bibitem[Ibsen et~al.(2022)Ibsen, Rathgeb, Drozdowski, and
+  Busch]{ibsen2022facebeneath}
+Mathias Ibsen, Christian Rathgeb, Pawel Drozdowski, and Christoph Busch.
+\newblock Face beneath the ink: Synthetic data and tattoo removal with
+  application to face recognition.
+\newblock \emph{Applied Sciences}, 12\penalty0 (24):\penalty0 12969, 2022.
+\newblock \doi{10.3390/app122412969}.
+
+\bibitem[Hessel et~al.(2021)Hessel, Holtzman, Forbes, Le~Bras, and
+  Choi]{hessel2021clipscore}
+Jack Hessel, Ari Holtzman, Maxwell Forbes, Ronan Le~Bras, and Yejin Choi.
+\newblock Clipscore: A reference-free evaluation metric for image captioning.
+\newblock In \emph{Proc. EMNLP}, 2021.
+\newblock \doi{10.18653/v1/2021.emnlp-main.595}.
+
+\bibitem[Radford et~al.(2021)Radford, Kim, Hallacy, et~al.]{radford2021clip}
+Alec Radford, Jong~Wook Kim, Chris Hallacy, et~al.
+\newblock Learning transferable visual models from natural language
+  supervision.
+\newblock In \emph{Proc. ICML, PMLR 139}, 2021.
+\newblock URL \url{https://proceedings.mlr.press/v139/radford21a.html}.
+
+\bibitem[Schuhmann et~al.(2022)Schuhmann, Beaumont, Vencu,
+  et~al.]{schuhmann2022laion}
+Christoph Schuhmann, Romain Beaumont, Richard Vencu, et~al.
+\newblock Laion-5b: An open large-scale dataset for training next generation
+  image-text models.
+\newblock In \emph{NeurIPS Datasets and Benchmarks}, 2022.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper_files/paper/2022/hash/a1859debfb3b59d094f3504d5ebb6c25-Abstract-Datasets_and_Benchmarks.html}.
+
+\bibitem[Huang et~al.(2023)Huang, Sun, Xie, Li, and Liu]{huang2023t2icompbench}
+Kaiyi Huang, Kaiyue Sun, Enze Xie, Zhenguo Li, and Xihui Liu.
+\newblock T2i-compbench: A comprehensive benchmark for open-world compositional
+  text-to-image generation.
+\newblock In \emph{NeurIPS Datasets and Benchmarks}, 2023.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper_files/paper/2023/hash/f8ad010cdd9143dbb0e9308c093aff24-Abstract-Datasets_and_Benchmarks.html}.
+
+\bibitem[Ghosh et~al.(2023)Ghosh, Hajishirzi, and Schmidt]{ghosh2023geneval}
+Dhruba Ghosh, Hannaneh Hajishirzi, and Ludwig Schmidt.
+\newblock Geneval: An object-focused framework for evaluating text-to-image
+  alignment.
+\newblock In \emph{NeurIPS Datasets and Benchmarks}, 2023.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper_files/paper/2023/hash/a3bf71c7c63f0c3bcb7ff67c67b1e7b1-Abstract-Datasets_and_Benchmarks.html}.
+
+\bibitem[Lee et~al.(2023)Lee, Yasunaga, Meng, et~al.]{lee2023heim}
+Tony Lee, Michihiro Yasunaga, Chenlin Meng, et~al.
+\newblock Holistic evaluation of text-to-image models.
+\newblock In \emph{NeurIPS Datasets and Benchmarks}, 2023.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper_files/paper/2023/hash/dd83eada2c3c74db3c7fe1c087513756-Abstract-Datasets_and_Benchmarks.html}.
+
+\bibitem[Liang et~al.(2024)Liang, He, Li, et~al.]{liang2024richhf}
+Youwei Liang, Junfeng He, Gang Li, et~al.
+\newblock Rich human feedback for text-to-image generation.
+\newblock In \emph{Proc. IEEE/CVF CVPR}, pages 19401--19411, 2024.
+\newblock URL
+  \url{https://openaccess.thecvf.com/content/CVPR2024/papers/Liang_Rich_Human_Feedback_for_Text-to-Image_Generation_CVPR_2024_paper.pdf}.
+
+\bibitem[DeCarlo et~al.(2003)DeCarlo, Finkelstein, Rusinkiewicz, and
+  Santella]{decarlo2003suggestive}
+Doug DeCarlo, Adam Finkelstein, Szymon Rusinkiewicz, and Anthony Santella.
+\newblock Suggestive contours for conveying shape.
+\newblock \emph{ACM Transactions on Graphics}, 22\penalty0 (3), 2003.
+\newblock \doi{10.1145/882262.882354}.
+
+\bibitem[Cole et~al.(2008)Cole, Golovinskiy, Limpaecher, et~al.]{cole2008where}
+Forrester Cole, Aleksey Golovinskiy, Alex Limpaecher, et~al.
+\newblock Where do people draw lines?
+\newblock In \emph{ACM SIGGRAPH 2008 Papers}, 2008.
+\newblock \doi{10.1145/1399504.1360687}.
+
+\bibitem[Simo-Serra et~al.(2016)Simo-Serra, Iizuka, Sasaki, and
+  Ishikawa]{simoserra2016simplify}
+Edgar Simo-Serra, Satoshi Iizuka, Kazuma Sasaki, and Hiroshi Ishikawa.
+\newblock Learning to simplify: Fully convolutional networks for rough sketch
+  cleanup.
+\newblock \emph{ACM Transactions on Graphics}, 35\penalty0 (4), 2016.
+\newblock \doi{10.1145/2897824.2925972}.
+
+\bibitem[Favreau et~al.(2016)Favreau, Lafarge, and
+  Bousseau]{favreau2016fidelity}
+Jean-Dominique Favreau, Florent Lafarge, and Adrien Bousseau.
+\newblock Fidelity vs. simplicity: A global approach to line drawing
+  vectorization.
+\newblock \emph{ACM Transactions on Graphics}, 35\penalty0 (4), 2016.
+\newblock \doi{10.1145/2897824.2925946}.
+
+\bibitem[Yan et~al.(2020)Yan, Vanderhaeghe, and Gingold]{yan2020sketchcleanup}
+Chuan Yan, David Vanderhaeghe, and Yotam Gingold.
+\newblock A benchmark for rough sketch cleanup.
+\newblock \emph{ACM Transactions on Graphics}, 39\penalty0 (6), 2020.
+\newblock \doi{10.1145/3414685.3417784}.
+
+\bibitem[Mo et~al.(2021)Mo, Simo-Serra, Gao, Zou, and
+  Wang]{mo2021virtualsketching}
+Haoran Mo, Edgar Simo-Serra, Chengying Gao, Changqing Zou, and Ruomei Wang.
+\newblock General virtual sketching framework for vector line art.
+\newblock \emph{ACM Transactions on Graphics}, 40\penalty0 (4), 2021.
+\newblock \doi{10.1145/3450626.3459833}.
+
+\bibitem[Otsu(1979)]{otsu1979}
+Nobuyuki Otsu.
+\newblock A threshold selection method from gray-level histograms.
+\newblock \emph{IEEE Transactions on Systems, Man, and Cybernetics}, 9\penalty0
+  (1), 1979.
+\newblock \doi{10.1109/TSMC.1979.4310076}.
+
+\bibitem[Canny(1986)]{canny1986}
+John Canny.
+\newblock A computational approach to edge detection.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 8\penalty0 (6), 1986.
+\newblock \doi{10.1109/TPAMI.1986.4767851}.
+
+\bibitem[Zhang and Suen(1984)]{zhang1984thinning}
+T.~Y. Zhang and Ching~Y. Suen.
+\newblock A fast parallel algorithm for thinning digital patterns.
+\newblock \emph{Communications of the ACM}, 27\penalty0 (3), 1984.
+\newblock \doi{10.1145/357994.358023}.
+
+\bibitem[Wang et~al.(2004)Wang, Bovik, Sheikh, and Simoncelli]{wang2004ssim}
+Zhou Wang, Alan~C. Bovik, Hamid~R. Sheikh, and Eero~P. Simoncelli.
+\newblock Image quality assessment: From error visibility to structural
+  similarity.
+\newblock \emph{IEEE Transactions on Image Processing}, 13\penalty0 (4), 2004.
+\newblock \doi{10.1109/TIP.2003.819861}.
+
+\end{thebibliography}

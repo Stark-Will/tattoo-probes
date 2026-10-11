@@ -1,0 +1,21 @@
+\section{Probe implementation notes}
+\label{app:probes}
+
+Distance transforms use a $5{\times}5$ mask.
+Skeleton endpoints are pixels whose $3{\times}3$ neighbour sum equals 2, and the open-end rate divides that count by skeleton length in centimetres.
+Tight gaps use the background inside the ink box only.
+Specks are 8-connected ink components smaller than $(0.30 \times 10)^2$ pixels.
+Mid-tones lie strictly inside grey $(60, 200)$, the border band is 5\,px, and Canny hysteresis is 50 and 150 \citep{canny1986}.
+Otsu is replaced by a fixed mid-grey cut when the grey standard deviation is at most 1 \citep{otsu1979}.
+Thinning is Zhang--Suen \citep{zhang1984thinning}.
+Edge transition divides median paper-minus-ink contrast by median Sobel magnitude on Canny pixels ($3{\times}3$ Sobel, one-eighth scale) and divides by 10\,px/mm.
+Empty masks yield 0.
+The deprecated composite is the mean of signed robust $z$-scores, using the median and interquartile range inside the scored pool.
+On the defect subset it rates haze and speckle at \DgProbecompositefiveHazeOne\ and \DgProbecompositefiveSpeckleOne, thickening at \DgProbecompositefiveThickenOne\ and \DgProbecompositefiveThickenTwo, and light blur at \DgProbecompositefiveBlurOne.
+Thickening moves the width term and the gap term in opposite directions, which is why that average is not a primary result.
+
+The spread test blurs with $\sigma$ in millimetres times 10\,px/mm and, in the reported grid, adds no pixel noise.
+Skeleton $F_1$ uses a square tolerance of width $2 \times \mathrm{round}(0.2 \times 10) + 1$ pixels.
+The reference mask and the spread mask use one shared Otsu threshold.
+SSIM is not computed \citep{wang2004ssim}.
+Bootstrap, fusion, design sampling, speckle and haze noise use seed 0.

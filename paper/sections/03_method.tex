@@ -1,0 +1,92 @@
+\section{Method}
+\label{sec:method}
+
+\paragraph{Notation.}
+Print size $s$ is the longest side in centimetres.
+Ink spread $\sigma$ is an isotropic Gaussian standard deviation in millimetres.
+Needle width is $w_n{=}0.30$\,mm and the tight-gap width is $g{=}0.50$\,mm.
+Pairwise accuracy is $A$.
+The effect is $A-0.5$, and $h$ is Cohen's $h$ of $A$ against $0.5$.
+Skeleton agreement is $F_1$ at a 0.2\,mm tolerance.
+The same symbols are used in the text, the tables and the captions.
+
+\subsection{Physical rescale}
+Every probe reads an RGB image, converts it to grey, and rescales it so the longest side spans the chosen print size $s$ at 10\,px/mm.
+Downscaling uses area interpolation.
+Upscaling uses cubic interpolation.
+Sizes 3, 5, 10 and 15\,cm are the grid.
+Preference tables use the 5\,cm probes.
+The degradation table also records 10\,cm probes in the raw file; the paper reports the 5\,cm slice.
+
+Ink is the set of pixels darker than an Otsu threshold \citep{otsu1979}.
+If the grey standard deviation is at most 1, the threshold is fixed at mid-grey.
+Line width is twice the distance transform on the ink mask, read on the Zhang--Suen skeleton and converted to millimetres \citep{zhang1984thinning}.
+
+\subsection{Pre-registered probes}
+Signs were fixed before any preference accuracy was computed.
+$+1$ means a larger value is treated as more tattooable.
+\texttt{line\_w\_p10\_mm} ($+1$) is the 10th percentile of skeleton line width.
+\texttt{frac\_sub\_needle} ($-1$) is the fraction of skeleton pixels thinner than $w_n$.
+\texttt{open\_ends\_per\_cm} ($-1$) counts skeleton endpoints per centimetre of skeleton.
+\texttt{frac\_tight\_gap} ($-1$) is the fraction of the background skeleton inside the ink box that is narrower than $g$.
+\texttt{midtone\_frac} ($-1$) is the fraction of pixels strictly between grey 60 and grey 200.
+\texttt{border\_std} ($-1$) is the standard deviation of a 5\,px border.
+\texttt{edge\_density\_per\_mm2} ($-1$) counts Canny edge pixels per square millimetre, with hysteresis 50 and 150 \citep{canny1986}.
+\texttt{specks\_per\_cm2} ($-1$) counts connected ink components smaller than a $w_n$ square, per square centimetre.
+An unweighted composite, the mean of signed robust $z$-scores, was defined in advance and is deprecated.
+Appendix~\ref{app:probes} keeps one sentence on it.
+Per-dimension accuracies in Table~\ref{tab:agree} are the probe result we interpret.
+Edge transition (below) is excluded from the pre-registered feature list and included only in the ``all probes'' fusion.
+
+\subsection{Post-hoc edge transition}
+\texttt{edge\_transition\_mm} (sign $-1$) estimates how wide the ink-to-paper ramp is.
+On Canny pixels we take the median Sobel magnitude and divide the median paper-minus-ink contrast by that magnitude, then convert pixels to millimetres.
+A soft or blurred edge scores higher.
+This probe was added after the first degradation run showed that blur and detail loss were invisible to the pre-registered set.
+Section~\ref{app:prereg} records that order.
+We do not treat its preference accuracy as a confirmatory test.
+
+\subsection{Scores we compare against}
+CLIPScore, PickScore, HPSv2.1 and ImageReward are used as released scorers \citep{hessel2021clipscore,kirstain2023pickapic,wu2023hpsv2,xu2023imagereward}.
+Higher is treated as the model's preferred image.
+We do not retrain them.
+HPSv2.1 was trained on HPDv2, and ImageReward was trained on ImageRewardDB.
+Accuracy of those two models on their own training distribution is leakage, not an external test.
+PickScore was trained on Pick-a-Pic v1, so its accuracy on our Pick-a-Pic v2 tattoo-subject pairs is also leaky.
+HPSv2.1 and ImageReward were not trained on Pick-a-Pic.
+On HPDv2, every reward score covers the same tattoo-subject pairs as the probes.
+
+Pairwise accuracy $A$ gives the human winner one point when its score is strictly higher, and half a point on a tie.
+Intervals are 95\% prompt-cluster bootstrap percentiles from 2000 resamples with seed 0.
+Each resample draws prompts with replacement and keeps every pair inside a drawn prompt, so the unit is the prompt.
+A two-sided bootstrap $p$ is then Holm-adjusted within each dataset across all scorers in Table~\ref{tab:agree}.
+A cell that sits on the smallest resolvable $p$ is reported as $p_{\mathrm{Holm}}\le\HpdHpstwoPholm$.
+The fusion model is L2 logistic regression on the difference of standardised features, with GroupKFold by prompt at $k{=}5$ and seed 0.
+Within each fold the winner side is randomly flipped so the label is balanced.
+Held-out accuracy counts a pair as correct when the predicted probability that the original orientation is the human order exceeds one half.
+Coefficients quoted in the text are the signs of a final model fit on all pairs.
+Their magnitudes are in the released coefficient file, not restated as new claims.
+
+\subsection{Controlled defects}
+On \nDegrDesigns\ designs we apply six operators at two strengths, always from the clean grey image.
+Thinning uses a dilation of the grey image with a $3$ or $5$ pixel square kernel (dark ink shrinks).
+Thickening uses the matching erosion.
+Haze blends the image toward a flat grey at weights 0.30 and 0.50 and adds a small Gaussian pixel noise.
+Speckle sets a random fraction 0.003 or 0.01 of pixels to black.
+Blur is a Gaussian with $\sigma$ of 1.5 or 3.0 pixels on the original raster, before physical rescale.
+Detail loss downsamples by 4 or by 8 with area interpolation and nearest-neighbour upsample.
+Detection is the fraction of designs on which the clean image outscores the degraded image under the same rule as pairwise accuracy.
+Reward models were run on a subset of \nDegrRewDesigns\ designs.
+The table uses that subset for every column so the cells match.
+
+\subsection{Ink-spread stress test}
+The spread model rescales to print size $s$ and applies an isotropic Gaussian of spread $\sigma$.
+The default grid adds no pixel noise.
+An earlier setting added grey-level noise with pixel standard deviation 4 and made skeleton $F_1$ fall with print size even at zero spread; that decline was an artifact, and those four noise-on values are reported only as a contrast.
+The grid is sizes 3, 5, 10 and 15\,cm and spreads from 0 to 0.60\,mm in steps of 0.05\,mm.
+Skeleton $F_1$ compares the clean ink skeleton with the spread ink skeleton.
+The reference and the simulation use the same Otsu threshold.
+A skeleton pixel matches if it lies within 0.2\,mm of the other skeleton.
+Gap survival is the fraction of background pixels inside the clean ink box that remain background after the spread.
+This is a stress test of the probes' scale assumptions.
+It is not calibrated to photographs of healed tattoos.
